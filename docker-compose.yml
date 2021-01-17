@@ -1,0 +1,53 @@
+version: '3.1'
+
+services:
+
+  web:
+    container_name: web
+    build: .
+    volumes:
+      - '.:/usr/src/app'
+    ports:
+      - 5000:5000
+    depends_on:
+      - db
+
+  db:
+    image: 'mongo'
+    container_name: db
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=abc123
+    restart: always
+    ports:
+      - '27017:27017'
+
+  redis:
+    image: "redis:alpine"
+
+  celery:
+    build: .
+    command: celery -A apis.tasks.tasks worker -l info
+    volumes:
+      - '.:/usr/src/app'
+    depends_on:
+      - db
+      - redis
+
+  celery-beat:
+    build: .
+    command: celery -A apis.tasks.tasks beat -l info
+    volumes:
+      - '.:/usr/src/app'
+    depends_on:
+      - db
+      - redis
+
+  flower:
+    image: mher/flower
+    command: ["flower", "--broker=redis://redis:6379/0", "--port=8888"]
+    ports:
+      - 8888:8888
+    depends_on:
+      - db
+      - redis

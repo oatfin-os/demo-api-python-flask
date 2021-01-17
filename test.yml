@@ -1,0 +1,32 @@
+version: '3.4'
+
+services:
+
+  web:
+    container_name: web
+    build:
+      context: .
+      dockerfile: Dockerfile.test
+    volumes:
+      - '.:/usr/src/app'
+    ports:
+      - 5000:5000
+    depends_on:
+      - db
+    command: bash -c '
+      chmod +x wait.sh &&
+      ./wait.sh db:27017 &&
+      python3 -m unittest discover apis/ -p "test_*.py"'
+
+  db:
+    image: 'mongo'
+    container_name: db
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=abc123
+    restart: always
+    ports:
+      - '27017:27017'
+
+  redis:
+    image: "redis:alpine"
