@@ -9,4 +9,5 @@ RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 
 ADD . /usr/src/app
-ENV FLASK_ENVIRONMENT=tst
+ENV FLASK_ENVIRONMENT=prd
+CMD celery -A apis.tasks.tasks worker -l info; celery -A apis.tasks.tasks beat -l info
