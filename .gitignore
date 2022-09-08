@@ -3,3 +3,4 @@ env/
 .idea/
 .coverage
 celerybeat-schedule
+.DS_STORE

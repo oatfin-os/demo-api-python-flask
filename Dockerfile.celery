@@ -1,4 +1,4 @@
-FROM python:3.6.1
+FROM python:3
 
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
@@ -6,7 +6,7 @@ WORKDIR /usr/src/app
 ADD ./requirements.txt /usr/src/app/requirements.txt
 
 RUN pip install --upgrade pip
-RUN pip install -r requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
 
 ADD . /usr/src/app
 ENV FLASK_ENVIRONMENT=prd
