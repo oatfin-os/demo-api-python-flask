@@ -25,8 +25,6 @@ class Dev(Common):
 class Prod(Common):
     DEBUG = False
     LOG_LEVEL = logging.INFO
-    DB_HOST = 'production_mongo_db_url'
-    DB_NAME = 'production_mogo_db_name'
 
 
 class Environment(object):

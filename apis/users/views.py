@@ -1,8 +1,7 @@
 import logging
 
 import flask
-from flask_jwt_extended import create_access_token
-from flask_jwt_extended import jwt_required
+from flask_jwt_extended import create_access_token, jwt_required
 
 from apis.base.views import api
 from apis.users.services import UserService
@@ -50,7 +49,7 @@ def create_user():
 
 
 @api.route('/users/<user_id>', methods=['DELETE'])
-@jwt_required
+@jwt_required()
 def delete_user(user_id):
     UserService().delete(user_id)
     logger.debug('deleted user with user_id={}'.format(user_id))

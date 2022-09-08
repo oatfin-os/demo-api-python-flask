@@ -14,10 +14,7 @@ def create_app(app_config):
     app = Flask(__name__)
 
     blueprints = [
-        base_api,
-        status_api,
-        tasks_api,
-        users_api,
+        base_api
     ]
 
     for blueprint in blueprints:

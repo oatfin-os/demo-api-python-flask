@@ -11,12 +11,12 @@ logger = logging.getLogger(__name__)
 
 
 @api.route('/tasks', methods=['POST'])
-@jwt_required
+@jwt_required()
 def task():
     logger.debug('task api')
     task_id = uuid.uuid4()
 
-    tasks.print_value_on_demand.apply_async(task_id=task_id)
+    tasks.print_value_on_demand.apply_async(task_id=str(task_id))
 
     return flask.jsonify(
         task_id=task_id
