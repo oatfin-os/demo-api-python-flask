@@ -1,4 +1,4 @@
-Flask==2.2.5
+Flask==2.3.3
 Flask-Script==2.0.5
 celery==5.2.7
 celery-redbeat==2.0.0
