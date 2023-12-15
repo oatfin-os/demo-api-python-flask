@@ -5,7 +5,7 @@ from apis.users.services import UserService, PasswordService
 
 class Test(BaseServiceTest):
     def test_lookup(self):
-        user = UserService().look_up(self.user['id'])
+        user = UserService()._look_up(self.user['id'])
 
         self.assertIsNotNone(user)
         self.assertEqual(
@@ -14,7 +14,7 @@ class Test(BaseServiceTest):
         )
 
     def test_lookup_username(self):
-        user = UserService().lookup_username(self.user['username'])
+        user = UserService()._lookup_username(self.user['username'])
 
         self.assertIsNotNone(user)
         self.assertEqual(
@@ -23,7 +23,7 @@ class Test(BaseServiceTest):
         )
 
     def test_lookup_username_fail(self):
-        user = UserService().lookup_username('no_user_name')
+        user = UserService()._lookup_username('no_user_name')
         self.assertIsNone(user)
 
     def test_login(self):
@@ -45,7 +45,7 @@ class Test(BaseServiceTest):
     def test_lookup_fail(self):
         self.assertRaises(
             errors.UserNotFoundError,
-            UserService().look_up, '5f17181d1d68a78c0ba04023'
+            UserService()._look_up, '5f17181d1d68a78c0ba04023'
         )
 
     def test_delete_fail(self):
