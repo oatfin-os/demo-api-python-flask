@@ -15,7 +15,7 @@ class UserService(object):
     def create(self, username, password):
         logger.debug('Creating user with username=%s', username)
 
-        existing_user = self.lookup_username(username)
+        existing_user = self._lookup_username(username)
         if existing_user is not None:
             raise errors.UserExistError()
 
@@ -29,7 +29,7 @@ class UserService(object):
     def authenticate(self, username, password):
         logger.debug('Authenticating user with username=%s', username)
 
-        user = self.lookup_username(username)
+        user = self._lookup_username(username)
         if user is None or \
                 not PasswordService.verify_password(
                     password, user.password
@@ -38,14 +38,14 @@ class UserService(object):
 
         return user
 
-    def lookup_username(self, username):
+    def _lookup_username(self, username):
         logger.debug('Fetching user with username=%s', username)
 
         return User.objects(
             username=username
         ).first()
 
-    def look_up(self, user_id):
+    def _look_up(self, user_id):
         logger.debug('Fetching user with user_id=%s', user_id)
 
         user = User.objects(
@@ -62,7 +62,7 @@ class UserService(object):
     def delete(self, user_id):
         logger.debug('Delete user with user_id=%s', user_id)
 
-        user = self.look_up(user_id)
+        user = self._look_up(user_id)
         user.delete()
 
 
