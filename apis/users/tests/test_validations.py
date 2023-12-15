@@ -8,7 +8,7 @@ class TestApp(unittest.TestCase):
 
     def test_success(self):
         errors = validate_user(
-            'test',
+            'test@gmail.com',
             '123456789kdkdk'
         )
         self.assertIsNone(
