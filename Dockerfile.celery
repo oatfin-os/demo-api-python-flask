@@ -10,4 +10,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 ADD . /usr/src/app
 ENV FLASK_ENVIRONMENT=prd
-CMD celery -A apis.tasks.tasks worker -l info; celery -A apis.tasks.tasks beat -l info
+CMD celery -A apis.tasks.tasks worker -l info;
