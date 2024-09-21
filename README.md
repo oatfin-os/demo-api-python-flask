@@ -2,7 +2,7 @@
 
 ## Testing:
 ```
-docker-compose -f test.yml up --build --abort-on-container-exit --exit-code-from web
+docker compose -f test.yml up --build --abort-on-container-exit --exit-code-from web
 ```
 
 ## To run locally:

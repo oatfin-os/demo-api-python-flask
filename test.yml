@@ -16,7 +16,7 @@ services:
       python3 -m unittest discover apis/ -p "test_*.py"'
 
   db:
-    image: 'mongo'
+    image: 'mongo:latest'
     container_name: db
     environment:
       - MONGO_INITDB_ROOT_USERNAME=root

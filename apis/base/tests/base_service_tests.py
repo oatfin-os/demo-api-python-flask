@@ -11,5 +11,5 @@ class BaseServiceTest(unittest.TestCase):
 
     def tearDown(self) -> None:
         UserService().delete(self.user['id'])
-        deleted = UserService().lookup_username(self.user['username'])
+        deleted = UserService()._lookup_username(self.user['username'])
         self.assertIsNone(deleted)
