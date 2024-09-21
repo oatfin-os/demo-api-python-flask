@@ -11,7 +11,7 @@ a. make sure docker and docker-compose are installed
 b. run: 
 
 ```
-docker-compose up --build
+docker compose up --build
 ```
 
 ## To use the app locally: 
