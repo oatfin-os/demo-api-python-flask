@@ -10,7 +10,7 @@ services:
       - db
 
   db:
-    image: 'mongo'
+    image: 'mongo:latest'
     container_name: db
     environment:
       - MONGO_INITDB_ROOT_USERNAME=root
